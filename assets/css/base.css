@@ -1,0 +1,43 @@
+:root {
+  --amarelo-padrao: #ffc312;
+  --azul-claro: #2b75bb;
+  --azul-escuro: #074075;
+}
+body {
+  background-color: var(--amarelo-padrao);
+  font-family: "Montserrat", sans-serif;
+}
+.pesquisarPokemon {
+  color: var(--azul-claro);
+  border-color: var(--azul-claro);
+  font-weight: bold;
+  transition-duration: 0.2s;
+  letter-spacing: 2px;
+}
+.foco:focus {
+  box-shadow: none;
+}
+.pesquisarPokemon:hover {
+  color: var(--amarelo-padrao);
+  background-color: var(--azul-claro);
+}
+.imagem__pokemon {
+  background-color: white;
+  border-radius: 100%;
+  width: 150px;
+  height: 150px;
+}
+.container__pokemon {
+  background-color: var(--azul-escuro);
+  color: #cdd3da;
+  border-radius: 25px;
+}
+.nome__pokemon {
+  color: var(--amarelo-padrao);
+  font-weight: bold !important;
+  letter-spacing: 5px;
+  text-transform: capitalize;
+}
+.erro {
+  font-size: 1.5rem;
+}
