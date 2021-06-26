@@ -1,0 +1,10 @@
+ let repositorios = [],
+                index = 0
+            result.items.forEach((repositorio) => {
+                repositorios[index++] = {
+                    nome: repositorio.name,
+                    descricao: repositorio.description,
+                    date: new Date(repositorio.created_at)
+                }
+            });
+            console.log(repositorios)

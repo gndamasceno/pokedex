@@ -1,0 +1,28 @@
+.containerBolinha {
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.bolinha {
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: aqua;
+  margin: 1%;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.descricao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 6%;
+}
+.titulo {
+  text-align: center;
+}

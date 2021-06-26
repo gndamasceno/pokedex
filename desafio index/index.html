@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const getRepositorios = async function () {
+            const url = "https://api.github.com/users/takenet/repos?per_page=100"
+            const response = await fetch(url);
+            const repositoriosEncontrados = await response.json();
+
+            const avatar = repositoriosEncontrados[0].owner.avatar_url
+
+            const listaRepositoriosEmCSharp = pegaRepositoriosCriadosEmCSharp(repositoriosEncontrados);
+            // não retorna o repositório Blip.Api.Template.K8s porque a language dele não está definida na propriedade language
+            const listaRepositoriosEmCSharpOrdenadosPelaData = sortRepositoriosPelaDataDeCriacao(
+                listaRepositoriosEmCSharp)
+            const listaRepositorios = listaRepositoriosEmCSharpOrdenadosPelaData.slice(0, 5)
+            const info = {
+                listaRepositorios,
+                avatar
+            }
+            
+            return info;
+
+            //order repos by date
+            /*
+            let repositoriosEncontrados = result;
+            let listaRepositorios = [],
+                index = 0;
+            repositoriosEncontrados.forEach((repositorio) => {
+                listaRepositorios[index++] = {
+                    nome: repositorio.name,
+                    descricao: repositorio.description,
+                    date: new Date(repositorio.created_at)
+                }
+            });
+           
+            listaRepositorios.sort(function (a, b) {
+                return a.date - b.date;
+            });
+            let avatar = repositoriosEncontrados[0].owner.avatar_url
+            const info = {
+                listaRepositorios,
+                avatar
+            }
+            let repositoriosTakeblip = [];
+            index = 0;
+            info.listaRepositorios.forEach(repositorio => {
+                repositoriosTakeblip[index++] = {
+                    nome: repositorio.nome,
+                    descricao: repositorio.descricao
+                }
+            });
+            console.log(repositoriosEncontrados)
+            
+            const sortDataPorDia = (listaRepositor) => {
+            listaRepositor.sort(function (a, b) {
+                return a.date - b.date;
+            });
+            return listaRepositor;
+        }
+             */
+        }
+
+        function sortRepositoriosPelaDataDeCriacao(repositorios) {
+            repositorios.sort(function (a, b) {
+                return a.date - b.date;
+            })
+            return repositorios;
+        }
+
+        function pegaRepositoriosCriadosEmCSharp(repositorios) {
+            let index = 0,
+                listaRepositorios = [];
+            repositorios.forEach(repositorio => {
+                if (repositorio.language == "C#") {
+                    listaRepositorios[index++] = {
+                        nome: repositorio.name,
+                        descricao: repositorio.description,
+                        date: new Date(repositorio.created_at)
+                    }
+                }
+            });
+            return listaRepositorios;
+        }
+        async function main() {
+            let teste = await getRepositorios();
+            return null;
+        }
+        main();
+    </script>
+</body>
+
+</html>
